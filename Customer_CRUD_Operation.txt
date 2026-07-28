@@ -1,0 +1,60 @@
+-
+
+CREATE TABLE Customer2 (
+    Customer_ID NUMBER PRIMARY KEY,
+    Customer_Name VARCHAR2(100) NOT NULL,
+    Email VARCHAR2(100) NOT NULL UNIQUE,
+    Phone_Number VARCHAR2(15) NOT NULL UNIQUE,
+    Address VARCHAR2(255) NOT NULL
+);
+
+
+
+INSERT ALL
+    INTO Customer2 VALUES (201, 'Rahul', 'rahul@gmail.com', '9876543221', 'Bangalore')
+    INTO Customer2 VALUES (202, 'Sneha', 'sneha@gmail.com', '9876543222', 'Hyderabad')
+    INTO Customer2 VALUES (203, 'Vishnu', 'vishnu@gmail.com', '9876543223', 'Pondicherry')
+    INTO Customer2 VALUES (204, 'Nithya', 'nithya@gmail.com', '9876543224', 'Kochi')
+    INTO Customer2 VALUES (205, 'Rakesh', 'rakesh@gmail.com', '9876543225', 'Mysore')
+    INTO Customer2 VALUES (206, 'Lavanya', 'lavanya@gmail.com', '9876543226', 'Bangalore')
+    INTO Customer2 VALUES (207, 'Gokul', 'gokul@gmail.com', '9876543227', 'Kanyakumari')
+    INTO Customer2 VALUES (208, 'Swathi', 'swathi@gmail.com', '9876543228', 'Thiruvananthapuram')
+    INTO Customer2 VALUES (209, 'Dinesh', 'dinesh@gmail.com', '9876543229', 'Hyderabad')
+    INTO Customer2 VALUES (210, 'Mahalakshmi', 'maha@gmail.com', '9876543230', 'Chennai')
+SELECT * FROM dual;
+
+COMMIT;
+
+
+SELECT * FROM Customer2;
+
+SELECT * FROM Customer2
+WHERE Customer_ID = 205;
+
+-
+
+UPDATE Customer2
+SET Customer_Name = 'Rahul Kumar',
+    Email = 'rahulkumar@gmail.com'
+WHERE Customer_ID = 201;
+
+COMMIT;
+
+
+
+UPDATE Customer2
+SET Address = 'Mumbai',
+    Phone_Number = '9876543333'
+WHERE Customer_ID = 205;
+
+COMMIT;
+
+
+DELETE FROM Customer2
+WHERE Customer_ID = 210;
+
+COMMIT;
+
+
+
+SELECT * FROM Customer2;
