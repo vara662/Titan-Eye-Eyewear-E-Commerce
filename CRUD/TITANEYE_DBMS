@@ -1,0 +1,481 @@
+SQL> CREATE TABLE Category (
+  2      Category_ID NUMBER PRIMARY KEY,
+  3      Category_Name VARCHAR2(100) NOT NULL
+  4  );
+
+Table created.
+
+SQL> CREATE TABLE Product (
+  2      Product_ID NUMBER PRIMARY KEY,
+  3      Product_Name VARCHAR2(150) NOT NULL,
+  4      Price NUMBER(10,2),
+  5      Stock NUMBER,
+  6      Category_ID NUMBER,
+  7      Frame_Color VARCHAR2(50),
+  8      Lens_Type VARCHAR2(100)
+  9  );
+
+Table created.
+
+SQL> ALTER TABLE Product
+  2  ADD CONSTRAINT fk_product_category
+  3  FOREIGN KEY (Category_ID)
+  4  REFERENCES Category(Category_ID);
+
+Table altered.
+
+SQL> INSERT INTO Category VALUES (1, 'Eyeglasses');
+
+1 row created.
+
+SQL> INSERT INTO Category VALUES (2, 'Sunglasses');
+
+1 row created.
+
+SQL> INSERT INTO Category VALUES (3, 'Contact Lenses');
+
+1 row created.
+
+SQL> COMMIT;
+
+Commit complete.
+
+SQL> INSERT INTO Product
+  2  (Product_ID, Product_Name, Price, Stock, Category_ID, Frame_Color, Lens_Type)
+  3  VALUES
+  4  (101, 'Titan Classic Frame', 2499.00, 25, 1, 'Black', 'Anti-Glare');
+
+1 row created.
+
+SQL>
+SQL> INSERT INTO Product
+  2  (Product_ID, Product_Name, Price, Stock, Category_ID, Frame_Color, Lens_Type)
+  3  VALUES
+  4  (102, 'Titan Metal Frame', 3299.00, 15, 1, 'Silver', 'Blue Cut');
+
+1 row created.
+
+SQL>
+SQL>
+SQL> INSERT INTO Product
+  2  (Product_ID, Product_Name, Price, Stock, Category_ID, Frame_Color, Lens_Type)
+  3  VALUES
+  4  (103, 'Titan Aviator Sunglasses', 2999.00, 20, 2, 'Black', 'UV Protection');
+
+1 row created.
+
+SQL> INSERT INTO Product
+  2  (Product_ID, Product_Name, Price, Stock, Category_ID, Frame_Color, Lens_Type)
+  3  VALUES
+  4  (104, 'Titan Round Sunglasses', 2799.00, 12, 2, 'Brown', 'Polarized');
+
+1 row created.
+
+SQL>
+SQL> INSERT INTO Product
+  2  (Product_ID, Product_Name, Price, Stock, Category_ID, Frame_Color, Lens_Type)
+  3  VALUES
+  4  (105, 'Daily Contact Lens', 999.00, 50, 3, NULL, 'Monthly');
+
+1 row created.
+
+SQL> COMMIT;
+
+Commit complete.
+
+SQL> SELECT * FROM Product;
+
+PRODUCT_ID
+----------
+PRODUCT_NAME
+--------------------------------------------------------------------------------
+     PRICE      STOCK CATEGORY_ID
+---------- ---------- -----------
+FRAME_COLOR
+--------------------------------------------------
+LENS_TYPE
+--------------------------------------------------------------------------------
+       101
+Titan Classic Frame
+      2499         25           1
+
+PRODUCT_ID
+----------
+PRODUCT_NAME
+--------------------------------------------------------------------------------
+     PRICE      STOCK CATEGORY_ID
+---------- ---------- -----------
+FRAME_COLOR
+--------------------------------------------------
+LENS_TYPE
+--------------------------------------------------------------------------------
+Black
+Anti-Glare
+
+
+PRODUCT_ID
+----------
+PRODUCT_NAME
+--------------------------------------------------------------------------------
+     PRICE      STOCK CATEGORY_ID
+---------- ---------- -----------
+FRAME_COLOR
+--------------------------------------------------
+LENS_TYPE
+--------------------------------------------------------------------------------
+       102
+Titan Metal Frame
+      3299         15           1
+
+PRODUCT_ID
+----------
+PRODUCT_NAME
+--------------------------------------------------------------------------------
+     PRICE      STOCK CATEGORY_ID
+---------- ---------- -----------
+FRAME_COLOR
+--------------------------------------------------
+LENS_TYPE
+--------------------------------------------------------------------------------
+Silver
+Blue Cut
+
+
+PRODUCT_ID
+----------
+PRODUCT_NAME
+--------------------------------------------------------------------------------
+     PRICE      STOCK CATEGORY_ID
+---------- ---------- -----------
+FRAME_COLOR
+--------------------------------------------------
+LENS_TYPE
+--------------------------------------------------------------------------------
+       103
+Titan Aviator Sunglasses
+      2999         20           2
+
+PRODUCT_ID
+----------
+PRODUCT_NAME
+--------------------------------------------------------------------------------
+     PRICE      STOCK CATEGORY_ID
+---------- ---------- -----------
+FRAME_COLOR
+--------------------------------------------------
+LENS_TYPE
+--------------------------------------------------------------------------------
+Black
+UV Protection
+
+
+PRODUCT_ID
+----------
+PRODUCT_NAME
+--------------------------------------------------------------------------------
+     PRICE      STOCK CATEGORY_ID
+---------- ---------- -----------
+FRAME_COLOR
+--------------------------------------------------
+LENS_TYPE
+--------------------------------------------------------------------------------
+       104
+Titan Round Sunglasses
+      2799         12           2
+
+PRODUCT_ID
+----------
+PRODUCT_NAME
+--------------------------------------------------------------------------------
+     PRICE      STOCK CATEGORY_ID
+---------- ---------- -----------
+FRAME_COLOR
+--------------------------------------------------
+LENS_TYPE
+--------------------------------------------------------------------------------
+Brown
+Polarized
+
+
+PRODUCT_ID
+----------
+PRODUCT_NAME
+--------------------------------------------------------------------------------
+     PRICE      STOCK CATEGORY_ID
+---------- ---------- -----------
+FRAME_COLOR
+--------------------------------------------------
+LENS_TYPE
+--------------------------------------------------------------------------------
+       105
+Daily Contact Lens
+       999         50           3
+
+PRODUCT_ID
+----------
+PRODUCT_NAME
+--------------------------------------------------------------------------------
+     PRICE      STOCK CATEGORY_ID
+---------- ---------- -----------
+FRAME_COLOR
+--------------------------------------------------
+LENS_TYPE
+--------------------------------------------------------------------------------
+
+Monthly
+
+
+SQL> UPDATE Product
+  2  SET Price = 2699.00,
+  3      Stock = 30
+  4  WHERE Product_ID = 101;
+
+1 row updated.
+
+SQL> SELECT * FROM Product
+  2  WHERE Product_ID = 101;
+
+PRODUCT_ID
+----------
+PRODUCT_NAME
+--------------------------------------------------------------------------------
+     PRICE      STOCK CATEGORY_ID
+---------- ---------- -----------
+FRAME_COLOR
+--------------------------------------------------
+LENS_TYPE
+--------------------------------------------------------------------------------
+       101
+Titan Classic Frame
+      2699         30           1
+
+PRODUCT_ID
+----------
+PRODUCT_NAME
+--------------------------------------------------------------------------------
+     PRICE      STOCK CATEGORY_ID
+---------- ---------- -----------
+FRAME_COLOR
+--------------------------------------------------
+LENS_TYPE
+--------------------------------------------------------------------------------
+Black
+Anti-Glare
+
+
+SQL> COMMIT;
+
+Commit complete.
+
+SQL> DELETE FROM Product
+  2  WHERE Product_ID = 105;
+
+1 row deleted.
+
+SQL> SELECT * FROM Product;
+
+PRODUCT_ID
+----------
+PRODUCT_NAME
+--------------------------------------------------------------------------------
+     PRICE      STOCK CATEGORY_ID
+---------- ---------- -----------
+FRAME_COLOR
+--------------------------------------------------
+LENS_TYPE
+--------------------------------------------------------------------------------
+       101
+Titan Classic Frame
+      2699         30           1
+
+PRODUCT_ID
+----------
+PRODUCT_NAME
+--------------------------------------------------------------------------------
+     PRICE      STOCK CATEGORY_ID
+---------- ---------- -----------
+FRAME_COLOR
+--------------------------------------------------
+LENS_TYPE
+--------------------------------------------------------------------------------
+Black
+Anti-Glare
+
+
+PRODUCT_ID
+----------
+PRODUCT_NAME
+--------------------------------------------------------------------------------
+     PRICE      STOCK CATEGORY_ID
+---------- ---------- -----------
+FRAME_COLOR
+--------------------------------------------------
+LENS_TYPE
+--------------------------------------------------------------------------------
+       102
+Titan Metal Frame
+      3299         15           1
+
+PRODUCT_ID
+----------
+PRODUCT_NAME
+--------------------------------------------------------------------------------
+     PRICE      STOCK CATEGORY_ID
+---------- ---------- -----------
+FRAME_COLOR
+--------------------------------------------------
+LENS_TYPE
+--------------------------------------------------------------------------------
+Silver
+Blue Cut
+
+
+PRODUCT_ID
+----------
+PRODUCT_NAME
+--------------------------------------------------------------------------------
+     PRICE      STOCK CATEGORY_ID
+---------- ---------- -----------
+FRAME_COLOR
+--------------------------------------------------
+LENS_TYPE
+--------------------------------------------------------------------------------
+       103
+Titan Aviator Sunglasses
+      2999         20           2
+
+PRODUCT_ID
+----------
+PRODUCT_NAME
+--------------------------------------------------------------------------------
+     PRICE      STOCK CATEGORY_ID
+---------- ---------- -----------
+FRAME_COLOR
+--------------------------------------------------
+LENS_TYPE
+--------------------------------------------------------------------------------
+Black
+UV Protection
+
+
+PRODUCT_ID
+----------
+PRODUCT_NAME
+--------------------------------------------------------------------------------
+     PRICE      STOCK CATEGORY_ID
+---------- ---------- -----------
+FRAME_COLOR
+--------------------------------------------------
+LENS_TYPE
+--------------------------------------------------------------------------------
+       104
+Titan Round Sunglasses
+      2799         12           2
+
+PRODUCT_ID
+----------
+PRODUCT_NAME
+--------------------------------------------------------------------------------
+     PRICE      STOCK CATEGORY_ID
+---------- ---------- -----------
+FRAME_COLOR
+--------------------------------------------------
+LENS_TYPE
+--------------------------------------------------------------------------------
+Brown
+Polarized
+
+
+SQL> COMMIT;
+
+Commit complete.
+
+SQL> SELECT
+  2      C.Category_Name,
+  3      P.Product_ID,
+  4      P.Product_Name,
+  5      P.Price,
+  6      P.Stock
+  7  FROM Category C
+  8  JOIN Product P
+  9  ON C.Category_ID = P.Category_ID
+ 10  ORDER BY C.Category_Name;
+
+CATEGORY_NAME
+--------------------------------------------------------------------------------
+PRODUCT_ID
+----------
+PRODUCT_NAME
+--------------------------------------------------------------------------------
+     PRICE      STOCK
+---------- ----------
+Eyeglasses
+       101
+Titan Classic Frame
+      2699         30
+
+
+CATEGORY_NAME
+--------------------------------------------------------------------------------
+PRODUCT_ID
+----------
+PRODUCT_NAME
+--------------------------------------------------------------------------------
+     PRICE      STOCK
+---------- ----------
+Eyeglasses
+       102
+Titan Metal Frame
+      3299         15
+
+
+CATEGORY_NAME
+--------------------------------------------------------------------------------
+PRODUCT_ID
+----------
+PRODUCT_NAME
+--------------------------------------------------------------------------------
+     PRICE      STOCK
+---------- ----------
+Sunglasses
+       103
+Titan Aviator Sunglasses
+      2999         20
+
+
+CATEGORY_NAME
+--------------------------------------------------------------------------------
+PRODUCT_ID
+----------
+PRODUCT_NAME
+--------------------------------------------------------------------------------
+     PRICE      STOCK
+---------- ----------
+Sunglasses
+       104
+Titan Round Sunglasses
+      2799         12
+
+
+SQL> SELECT
+  2      C.Category_Name,
+  3      COUNT(P.Product_ID) AS Total_Products,
+  4      NVL(SUM(P.Stock), 0) AS Total_Stock
+  5  FROM Category C
+  6  LEFT JOIN Product P
+  7  ON C.Category_ID = P.Category_ID
+  8  GROUP BY C.Category_ID, C.Category_Name
+  9  ORDER BY C.Category_Name;
+
+CATEGORY_NAME
+--------------------------------------------------------------------------------
+TOTAL_PRODUCTS TOTAL_STOCK
+-------------- -----------
+Contact Lenses
+             0           0
+
+Eyeglasses
+             2          45
+
+Sunglasses
+             2          32
