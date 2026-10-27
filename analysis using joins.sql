@@ -303,25 +303,6 @@ TOTAL_AMOUNT ORDER_STATUS
         7499 Pending
 
 
-SQL> SELECT c.CUSTOMER_ID,
-  2         c.CUSTOMER_NAME,
-  3         o.ORDER_ID,
-  4         o.ORDER_DATE,
-  5         p.PRODUCT_NAME,
-  6         oi.QUANTITY,
-  7         oi.PRICE,
-  8         o.TOTAL_AMOUNT,
-  9         o.ORDER_STATUS
- 10  FROM Customer c
- 11  INNER JOIN Orders o
- 12  ON c.CUSTOMER_ID = o.CUSTOMER_ID
- 13  INNER JOIN Order_Item oi
- 14  ON o.ORDER_ID = oi.ORDER_ID
- 15  INNER JOIN Product p
- 16  ON oi.PRODUCT_ID = p.PRODUCT_ID;
-
-no rows selected
-
 SQL> SELECT * FROM Product;
 
 PRODUCT_ID
